@@ -4,8 +4,8 @@
 * 文件名称： main.c
 * 文件标识：
 * 内容摘要： main相关函数定义
-* 其它说明：
-* 当前版本：
+* 其它说明： https://github.com/woody5418/STM32L151_FREERTOS_DEMO
+* 当前版本： V1.0
 * 作    者： woody   QQ：2490006131
 * 完成日期： 2020.09.07
 *	< STM32L151ZET6 >
