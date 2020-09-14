@@ -1,99 +1,99 @@
 /************************************************************************
 * Copyright (C) Copyright 2014-2015,Nercita,Beijing,China
 *
-* ÎÄ¼þÃû³Æ£º main.c
-* ÎÄ¼þ±êÊ¶£º
-* ÄÚÈÝÕªÒª£º mainÏà¹Øº¯Êý¶¨Òå
-* ÆäËüËµÃ÷£º https://github.com/woody5418/STM32L151_FREERTOS_DEMO
-* µ±Ç°°æ±¾£º V1.0
-* ×÷    Õß£º woody   QQ£º2490006131
-* Íê³ÉÈÕÆÚ£º 2020.09.07
+* æ–‡ä»¶åç§°ï¼š main.c
+* æ–‡ä»¶æ ‡è¯†ï¼š
+* å†…å®¹æ‘˜è¦ï¼š mainç›¸å…³å‡½æ•°å®šä¹‰
+* å…¶å®ƒè¯´æ˜Žï¼š https://github.com/woody5418/STM32L151_FREERTOS_DEMO
+* å½“å‰ç‰ˆæœ¬ï¼š V1.0
+* ä½œ    è€…ï¼š woody   QQï¼š2490006131
+* å®Œæˆæ—¥æœŸï¼š 2020.09.07
 *	< STM32L151ZET6 >
 			FLASH SIZE	:512Kbytes
 			RAM SIZE	:80Kbytes
 			EEPROM  	:16K
-* ÐÞ¸Ä¼ÇÂ¼1£º
-*    ÐÞ¸ÄÈÕÆÚ£º
-*    °æ ±¾ ºÅ£º
-*    ÐÞ ¸Ä ÈË£º
-*    ÐÞ¸ÄÄÚÈÝ£º
-* ÐÞ¸Ä¼ÇÂ¼2£º¡­
+* ä¿®æ”¹è®°å½•1ï¼š
+*    ä¿®æ”¹æ—¥æœŸï¼š
+*    ç‰ˆ æœ¬ å·ï¼š
+*    ä¿® æ”¹ äººï¼š
+*    ä¿®æ”¹å†…å®¹ï¼š
+* ä¿®æ”¹è®°å½•2ï¼šâ€¦
 ************************************************************************/
 #include "MainConfig.h"
 #include "usart.h"
 #include "app.h"
 
 
-TaskHandle_t StartTask_Handler;  //ÈÎÎñ¾ä±ú ´´½¨Æô¶¯ÈÎÎñ
+TaskHandle_t StartTask_Handler;  //ä»»åŠ¡å¥æŸ„ åˆ›å»ºå¯åŠ¨ä»»åŠ¡
 
 /**************************************************************************
-* º¯ÊýÃû³Æ: start_task
-* ¹¦ÄÜÃèÊö: Æô¶¯ÈÎÎñ£¬Ò²¾ÍÊÇ×î¸ßÓÅÏÈ¼¶ÈÎÎñ£¬ÕâÀïÓÃÀ´´´½¨ÆäËûÈÎÎñ
-* ÊäÈë²ÎÊý: pvParameters ÊÇÔÚ´´½¨¸ÃÈÎÎñÊ±´«µÝµÄÐÎ²Î
-* Êä³ö²ÎÊý: ÎÞ
-* ·µ »Ø Öµ: ÎÞ
+* å‡½æ•°åç§°: start_task
+* åŠŸèƒ½æè¿°: å¯åŠ¨ä»»åŠ¡ï¼Œä¹Ÿå°±æ˜¯æœ€é«˜ä¼˜å…ˆçº§ä»»åŠ¡ï¼Œè¿™é‡Œç”¨æ¥åˆ›å»ºå…¶ä»–ä»»åŠ¡
+* è¾“å…¥å‚æ•°: pvParameters æ˜¯åœ¨åˆ›å»ºè¯¥ä»»åŠ¡æ—¶ä¼ é€’çš„å½¢å‚
+* è¾“å‡ºå‚æ•°: æ— 
+* è¿” å›ž å€¼: æ— 
 * -----------------------------------------------
-* 2020/09/07       V1.0      woody         ´´½¨
+* 2020/09/07       V1.0      woody         åˆ›å»º
 **************************************************************************/
 void start_task(void *pvParameters)
 {
-    taskENTER_CRITICAL();      					//½øÈëÁÙ½çÇø
-    app_Init();									//ÈÎÎñ´´½¨º¯Êý
-    vTaskDelete(StartTask_Handler);             //É¾³ý¿ªÊ¼ÈÎÎñ
-    taskEXIT_CRITICAL();       					//ÍË³öÁÙ½çÇø
+    taskENTER_CRITICAL();      					//è¿›å…¥ä¸´ç•ŒåŒº
+    app_Init();									//ä»»åŠ¡åˆ›å»ºå‡½æ•°
+    vTaskDelete(StartTask_Handler);             //åˆ é™¤å¼€å§‹ä»»åŠ¡
+    taskEXIT_CRITICAL();       					//é€€å‡ºä¸´ç•ŒåŒº
 }
 
 
 /**************************************************************************
-* º¯ÊýÃû³Æ: main
-* ¹¦ÄÜÃèÊö: Ö÷º¯Êý
-* ÊäÈë²ÎÊý: ÎÞ
-* Êä³ö²ÎÊý: ÎÞ
-* ·µ »Ø Öµ: ÎÞ
+* å‡½æ•°åç§°: main
+* åŠŸèƒ½æè¿°: ä¸»å‡½æ•°
+* è¾“å…¥å‚æ•°: æ— 
+* è¾“å‡ºå‚æ•°: æ— 
+* è¿” å›ž å€¼: æ— 
 * -----------------------------------------------
-* 2020/09/07       V1.0      woody         ´´½¨
+* 2020/09/07       V1.0      woody         åˆ›å»º
 **************************************************************************/
 int main(void)
 {
-	/* ÔÚÆô¶¯µ÷¶ÈÇ°£¬ÎªÁË·ÀÖ¹³õÊ¼»¯ STM32 ÍâÉèÊ±ÓÐÖÐ¶Ï·þÎñ³ÌÐòÖ´ÐÐ£¬ÕâÀï½ûÖ¹È«¾ÖÖÐ¶Ï ³ýÁË NMI ºÍ HardFault) ¡£
-	ÕâÑù×öµÄºÃ´¦ÊÇ£º
-	1. ·ÀÖ¹Ö´ÐÐµÄÖÐ¶Ï·þÎñ³ÌÐòÖÐÓÐ FreeRTOS µÄ API º¯Êý¡£
-	2. ±£Ö¤ÏµÍ³Õý³£Æô¶¯£¬²» ÊÜ±ðµÄÖÐ¶ÏÓ°Ïì¡£
-	3. ¹ØÓÚÊÇ·ñ¹Ø±ÕÈ«¾ÖÖÐ¶Ï£¬´ó¼Ò¸ù¾Ý×Ô¼ºµÄÊµ¼ÊÇé¿öÉèÖÃ¼´¿É¡£
-	ÔÚÒÆÖ²ÎÄ¼þ port.c ÖÐµÄº¯Êý prvStartFirstTask ÖÐ»áÖØÐÂ¿ªÆôÈ«¾ÖÖÐ¶Ï¡£Í¨¹ýÖ¸Áî cpsie i ¿ªÆô£¬ £¬__set_PRIMASK(
-	ºÍ cpsie i ÊÇµÈÐ§µÄ¡£*/
+	/* åœ¨å¯åŠ¨è°ƒåº¦å‰ï¼Œä¸ºäº†é˜²æ­¢åˆå§‹åŒ– STM32 å¤–è®¾æ—¶æœ‰ä¸­æ–­æœåŠ¡ç¨‹åºæ‰§è¡Œï¼Œè¿™é‡Œç¦æ­¢å…¨å±€ä¸­æ–­ é™¤äº† NMI å’Œ HardFault) ã€‚
+	è¿™æ ·åšçš„å¥½å¤„æ˜¯ï¼š
+	1. é˜²æ­¢æ‰§è¡Œçš„ä¸­æ–­æœåŠ¡ç¨‹åºä¸­æœ‰ FreeRTOS çš„ API å‡½æ•°ã€‚
+	2. ä¿è¯ç³»ç»Ÿæ­£å¸¸å¯åŠ¨ï¼Œä¸ å—åˆ«çš„ä¸­æ–­å½±å“ã€‚
+	3. å…³äºŽæ˜¯å¦å…³é—­å…¨å±€ä¸­æ–­ï¼Œå¤§å®¶æ ¹æ®è‡ªå·±çš„å®žé™…æƒ…å†µè®¾ç½®å³å¯ã€‚
+	åœ¨ç§»æ¤æ–‡ä»¶ port.c ä¸­çš„å‡½æ•° prvStartFirstTask ä¸­ä¼šé‡æ–°å¼€å¯å…¨å±€ä¸­æ–­ã€‚é€šè¿‡æŒ‡ä»¤ cpsie i å¼€å¯ï¼Œ ï¼Œ__set_PRIMASK(
+	å’Œ cpsie i æ˜¯ç­‰æ•ˆçš„ã€‚*/
 	__set_PRIMASK(1);
 
-    /* ±£Ö¤Ë¯ÃßÄ£Ê½ÏÂµ÷ÊÔÆ÷¼ÌÐø¿ÉÒÔÁ¬½ÓÊ¹ÓÃ */
+    /* ä¿è¯ç¡çœ æ¨¡å¼ä¸‹è°ƒè¯•å™¨ç»§ç»­å¯ä»¥è¿žæŽ¥ä½¿ç”¨ */
     DBGMCU_Config(DBGMCU_SLEEP, ENABLE);
 
-    /*	ÓÉÓÚ ST ¹Ì¼þ¿âµÄÆô¶¯ÎÄ¼þÒÑ¾­Ö´ÐÐÁË CPU ÏµÍ³Ê±ÖÓµÄ³õÊ¼»¯£¬ËùÒÔ²»±ØÔÙ´ÎÖØ¸´ÅäÖÃÏµÍ³Ê±ÖÓ¡£
-    	Æô¶¯ÎÄ¼þÅäÖÃÁË CPU Ö÷Ê±ÖÓÆµÂÊ¡¢ÄÚ²¿ Flash ·ÃÎÊËÙ¶ÈºÍ¿ÉÑ¡µÄÍâ²¿ SRAM FSMC ³õÊ¼»¯¡£
-    	ÏµÍ³Ê±ÖÓÈ±Ê¡ÅäÖÃÎª 32MHz £¬Èç¹ûÐèÒª¸ü¸Ä£¬¿ÉÒÔÐÞ¸Ä system_stm32l1xx.c ÎÄ¼þ*/
-    /* ÓÅÏÈ¼¶·Ö×éÉèÖÃÎª 4 £¬¿ÉÅäÖÃ 0~15 ¼¶ÇÀÕ¼Ê½ÓÅÏÈ¼¶£¬ 0 ¼¶×ÓÓÅÏÈ¼¶£¬¼´²»´æÔÚ×ÓÓÅÏÈ¼¶¡£*/
+    /*	ç”±äºŽ ST å›ºä»¶åº“çš„å¯åŠ¨æ–‡ä»¶å·²ç»æ‰§è¡Œäº† CPU ç³»ç»Ÿæ—¶é’Ÿçš„åˆå§‹åŒ–ï¼Œæ‰€ä»¥ä¸å¿…å†æ¬¡é‡å¤é…ç½®ç³»ç»Ÿæ—¶é’Ÿã€‚
+    	å¯åŠ¨æ–‡ä»¶é…ç½®äº† CPU ä¸»æ—¶é’Ÿé¢‘çŽ‡ã€å†…éƒ¨ Flash è®¿é—®é€Ÿåº¦å’Œå¯é€‰çš„å¤–éƒ¨ SRAM FSMC åˆå§‹åŒ–ã€‚
+    	ç³»ç»Ÿæ—¶é’Ÿç¼ºçœé…ç½®ä¸º 32MHz ï¼Œå¦‚æžœéœ€è¦æ›´æ”¹ï¼Œå¯ä»¥ä¿®æ”¹ system_stm32l1xx.c æ–‡ä»¶*/
+    /* ä¼˜å…ˆçº§åˆ†ç»„è®¾ç½®ä¸º 4 ï¼Œå¯é…ç½® 0~15 çº§æŠ¢å å¼ä¼˜å…ˆçº§ï¼Œ 0 çº§å­ä¼˜å…ˆçº§ï¼Œå³ä¸å­˜åœ¨å­ä¼˜å…ˆçº§ã€‚*/
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 	
-    delay_init();			//ÑÓÊ±³õÊ¼»¯´úÂë
+    delay_init();			//å»¶æ—¶åˆå§‹åŒ–ä»£ç 
 #if DEBUG_LOG_PRINTF
     USART1_Init(115200);
 #endif
-    bsp_Init();				//ËùÓÐÓ²¼þ¹Ì¼þ³õÊ¼»¯
+    bsp_Init();				//æ‰€æœ‰ç¡¬ä»¶å›ºä»¶åˆå§‹åŒ–
 #if DEBUG_LOG_PRINTF
     DEBUG_LOG_PRF(STM32_VERSION);
 #endif	
 	
-    /* ´´½¨ÈÎÎñ */
-    xTaskCreate((TaskFunction_t	)start_task,		  	//ÈÎÎñº¯Êý
-                (const char* 	)"start_task",		  	//ÈÎÎñÃû³Æ
-                (uint16_t 		)START_STK_SIZE,	  	//ÈÎÎñ¶ÑÕ»´óÐ¡
-                (void* 		  	)NULL,				  	//´«µÝ¸øÈÎÎñº¯ÊýµÄ²ÎÊý
-                (UBaseType_t 	)START_TASK_PRIO, 	  	//ÈÎÎñÓÅÏÈ¼¶
-                (TaskHandle_t*  )&StartTask_Handler); 	//ÈÎÎñ¾ä±ú
+    /* åˆ›å»ºä»»åŠ¡ */
+    xTaskCreate((TaskFunction_t	)start_task,		  	//ä»»åŠ¡å‡½æ•°
+                (const char* 	)"start_task",		  	//ä»»åŠ¡åç§°
+                (uint16_t 		)START_STK_SIZE,	  	//ä»»åŠ¡å †æ ˆå¤§å°
+                (void* 		  	)NULL,				  	//ä¼ é€’ç»™ä»»åŠ¡å‡½æ•°çš„å‚æ•°
+                (UBaseType_t 	)START_TASK_PRIO, 	  	//ä»»åŠ¡ä¼˜å…ˆçº§
+                (TaskHandle_t*  )&StartTask_Handler); 	//ä»»åŠ¡å¥æŸ„
 
-    vTaskStartScheduler();    							//¿ªÆôÈÎÎñµ÷¶È
+    vTaskStartScheduler();    							//å¼€å¯ä»»åŠ¡è°ƒåº¦
     /*
-     Èç¹ûÏµÍ³Õý³£Æô¶¯ÊÇ²»»áÔËÐÐµ½ÕâÀïµÄ£¬ÔËÐÐµ½ÕâÀï¼«ÓÐ¿ÉÄÜÊÇÓÃÓÚ¶¨Ê±Æ÷ÈÎÎñ»òÕß¿ÕÏÐÈÎÎñµÄ
-     heap ¿Õ¼ä²»×ãÔì³É´´½¨Ê§°Ü£¬´ËÒª¼Ó´ó FreeRTOSConfig.h ÎÄ¼þÖÐ¶¨ÒåµÄ heap ´óÐ¡£º
+     å¦‚æžœç³»ç»Ÿæ­£å¸¸å¯åŠ¨æ˜¯ä¸ä¼šè¿è¡Œåˆ°è¿™é‡Œçš„ï¼Œè¿è¡Œåˆ°è¿™é‡Œæžæœ‰å¯èƒ½æ˜¯ç”¨äºŽå®šæ—¶å™¨ä»»åŠ¡æˆ–è€…ç©ºé—²ä»»åŠ¡çš„
+     heap ç©ºé—´ä¸è¶³é€ æˆåˆ›å»ºå¤±è´¥ï¼Œæ­¤è¦åŠ å¤§ FreeRTOSConfig.h æ–‡ä»¶ä¸­å®šä¹‰çš„ heap å¤§å°ï¼š
      #define configTOTAL_HEAP_SIZE ( ( size_t ) ( 8 * 1024 ) )
     */
     while(1);

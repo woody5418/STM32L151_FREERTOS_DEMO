@@ -1,58 +1,58 @@
 /************************************************************************
 * Copyright (C) 2020 Nercita
 *
-* ÎÄ¼şÃû³Æ£º usart.c
-* ÎÄ¼ş±êÊ¶£º
-* ÄÚÈİÕªÒª£º usartÏà¹Øº¯Êı¶¨Òå
-* ÆäËüËµÃ÷£º
-* µ±Ç°°æ±¾£º
-* ×÷    Õß£º woody
-* Íê³ÉÈÕÆÚ£º 2020.09.07
+* æ–‡ä»¶åç§°ï¼š usart.c
+* æ–‡ä»¶æ ‡è¯†ï¼š
+* å†…å®¹æ‘˜è¦ï¼š usartç›¸å…³å‡½æ•°å®šä¹‰
+* å…¶å®ƒè¯´æ˜ï¼š
+* å½“å‰ç‰ˆæœ¬ï¼š
+* ä½œ    è€…ï¼š woody
+* å®Œæˆæ—¥æœŸï¼š 2020.09.07
 *
-* ĞŞ¸Ä¼ÇÂ¼1£º
-*    ĞŞ¸ÄÈÕÆÚ£º
-*    °æ ±¾ ºÅ£º
-*    ĞŞ ¸Ä ÈË£º
-*    ĞŞ¸ÄÄÚÈİ£º
-* ĞŞ¸Ä¼ÇÂ¼2£º¡­
+* ä¿®æ”¹è®°å½•1ï¼š
+*    ä¿®æ”¹æ—¥æœŸï¼š
+*    ç‰ˆ æœ¬ å·ï¼š
+*    ä¿® æ”¹ äººï¼š
+*    ä¿®æ”¹å†…å®¹ï¼š
+* ä¿®æ”¹è®°å½•2ï¼šâ€¦
 ************************************************************************/
 #include "usart.h"
 #include "MainConfig.h"
 
 
 #if DEBUG_LOG_PRINTF
-//¼ÓÈëÒÔÏÂ´úÂë,Ö§³Öprintfº¯Êı,¶ø²»ĞèÒªÑ¡Ôñuse MicroLIB
+//åŠ å…¥ä»¥ä¸‹ä»£ç ,æ”¯æŒprintfå‡½æ•°,è€Œä¸éœ€è¦é€‰æ‹©use MicroLIB
 #if 1
 #pragma import(__use_no_semihosting)
-//±ê×¼¿âĞèÒªµÄÖ§³Öº¯Êı
+//æ ‡å‡†åº“éœ€è¦çš„æ”¯æŒå‡½æ•°
 struct __FILE {
     int handle;
 
 };
 
 FILE __stdout;
-//¶¨Òå_sys_exit()ÒÔ±ÜÃâÊ¹ÓÃ°ëÖ÷»úÄ£Ê½
+//å®šä¹‰_sys_exit()ä»¥é¿å…ä½¿ç”¨åŠä¸»æœºæ¨¡å¼
 void _sys_exit(int x)
 {
     x = x;
 }
-//ÖØ¶¨Òåfputcº¯Êı
+//é‡å®šä¹‰fputcå‡½æ•°
 int fputc(int ch, FILE *f)
 {
-    while((USART1->SR & 0X40) == 0); //Ñ­»··¢ËÍ,Ö±µ½·¢ËÍÍê±Ï
+    while((USART1->SR & 0X40) == 0); //å¾ªç¯å‘é€,ç›´åˆ°å‘é€å®Œæ¯•
     USART1->DR = (uint8_t) ch;
     return ch;
 }
 #endif
 
 /**************************************************************************
-* º¯ÊıÃû³Æ: USART1_Init
-* ¹¦ÄÜÃèÊö: USART1_Init ³õÊ¼»¯º¯Êı£¬(´®¿Ú1¹¦ÄÜÓëUSB¹¦ÄÜ³åÍ»)
-* ÊäÈë²ÎÊı: ÎŞ
-* Êä³ö²ÎÊı: ÎŞ
-* ·µ »Ø Öµ: ÎŞ
+* å‡½æ•°åç§°: USART1_Init
+* åŠŸèƒ½æè¿°: USART1_Init åˆå§‹åŒ–å‡½æ•°ï¼Œ(ä¸²å£1åŠŸèƒ½ä¸USBåŠŸèƒ½å†²çª)
+* è¾“å…¥å‚æ•°: æ— 
+* è¾“å‡ºå‚æ•°: æ— 
+* è¿” å› å€¼: æ— 
 * -----------------------------------------------
-* 2020/09/07       V1.0      woody         ´´½¨
+* 2020/09/07       V1.0      woody         åˆ›å»º
 **************************************************************************/
 
 void USART1_Init(uint32_t BaudRate)
@@ -60,13 +60,13 @@ void USART1_Init(uint32_t BaudRate)
     GPIO_InitTypeDef GPIO_InitStructure;
     USART_InitTypeDef USART_InitStructure;
 
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);			//Ê¹ÄÜUSART1
-    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);				//Ê¹ÄÜGPIOAÊ±ÖÓ
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);			//ä½¿èƒ½USART1
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);				//ä½¿èƒ½GPIOAæ—¶é’Ÿ
 
     /* Connect PA9 to USART1_Tx */
-    GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_USART1); 		//PA.9 ¸´ÓÃ
+    GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_USART1); 		//PA.9 å¤ç”¨
     /* Connect PA10 to USART1_Rx */
-    GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_USART1); 		//PA10 ¸´ÓÃ
+    GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_USART1); 		//PA10 å¤ç”¨
 
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
@@ -75,15 +75,15 @@ void USART1_Init(uint32_t BaudRate)
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-    USART_InitStructure.USART_BaudRate = BaudRate; //´®¿Ú²¨ÌØÂÊ
-    USART_InitStructure.USART_WordLength = USART_WordLength_8b;//×Ö³¤Îª8Î»Êı¾İ¸ñÊ½
-    USART_InitStructure.USART_StopBits = USART_StopBits_1; //Ò»¸öÍ£Ö¹Î»
-    USART_InitStructure.USART_Parity = USART_Parity_No; //ÎŞÆæÅ¼Ğ£ÑéÎ»
-    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//ÎŞÓ²¼şÊı¾İÁ÷¿ØÖÆ
-    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	  //ÊÕ·¢Ä£Ê½
+    USART_InitStructure.USART_BaudRate = BaudRate; //ä¸²å£æ³¢ç‰¹ç‡
+    USART_InitStructure.USART_WordLength = USART_WordLength_8b;//å­—é•¿ä¸º8ä½æ•°æ®æ ¼å¼
+    USART_InitStructure.USART_StopBits = USART_StopBits_1; //ä¸€ä¸ªåœæ­¢ä½
+    USART_InitStructure.USART_Parity = USART_Parity_No; //æ— å¥‡å¶æ ¡éªŒä½
+    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//æ— ç¡¬ä»¶æ•°æ®æµæ§åˆ¶
+    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	  //æ”¶å‘æ¨¡å¼
 
-    USART_Init(USART1, &USART_InitStructure);//³õÊ¼»¯´®¿Ú1
-    USART_Cmd(USART1, ENABLE);//Ê¹ÄÜ´®¿Ú1
+    USART_Init(USART1, &USART_InitStructure);//åˆå§‹åŒ–ä¸²å£1
+    USART_Cmd(USART1, ENABLE);//ä½¿èƒ½ä¸²å£1
 }
 #endif
 

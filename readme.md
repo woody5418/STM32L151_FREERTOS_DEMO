@@ -18,7 +18,7 @@
 	作    者 ：woody
 	联系方式 ：QQ 2490006131
 	修改时间 ：2020/09/07
-	最新样例 ：https://github.com/woody5418/STM32L151_FREERTOS_DEMO
+	最新样例 ：
 	功能说明 ：STM32L151大容量支持
 			   FreeRTOSv10.3.1 最新版本支持
 			   cJson支持（keil自带的jansson）

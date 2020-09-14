@@ -1,26 +1,26 @@
 /************************************************************************
 * Copyright (C) 2020 Nercita
 *
-* ÎÄ¼þÃû³Æ£º MainConfig.h
-* ÎÄ¼þ±êÊ¶£º
-* ÄÚÈÝÕªÒª£º MainConfigÏà¹Øº¯ÊýÉùÃ÷
-* ÆäËüËµÃ÷£º
-* µ±Ç°°æ±¾£º
-* ×÷    Õß£º woody
-* Íê³ÉÈÕÆÚ£º 2020.09.07
+* æ–‡ä»¶åç§°ï¼š MainConfig.h
+* æ–‡ä»¶æ ‡è¯†ï¼š
+* å†…å®¹æ‘˜è¦ï¼š MainConfigç›¸å…³å‡½æ•°å£°æ˜Ž
+* å…¶å®ƒè¯´æ˜Žï¼š
+* å½“å‰ç‰ˆæœ¬ï¼š
+* ä½œ    è€…ï¼š woody
+* å®Œæˆæ—¥æœŸï¼š 2020.09.07
 *
-* ÐÞ¸Ä¼ÇÂ¼1£º
-*    ÐÞ¸ÄÈÕÆÚ£º
-*    °æ ±¾ ºÅ£º
-*    ÐÞ ¸Ä ÈË£º
-*    ÐÞ¸ÄÄÚÈÝ£º
-* ÐÞ¸Ä¼ÇÂ¼2£º¡­
+* ä¿®æ”¹è®°å½•1ï¼š
+*    ä¿®æ”¹æ—¥æœŸï¼š
+*    ç‰ˆ æœ¬ å·ï¼š
+*    ä¿® æ”¹ äººï¼š
+*    ä¿®æ”¹å†…å®¹ï¼š
+* ä¿®æ”¹è®°å½•2ï¼šâ€¦
 ************************************************************************/
 #ifndef __MAINCONFIG_H_
 #define __MAINCONFIG_H_
 #include "stm32l1xx.h"
 /*****************************************
- * FREERTOS¿âÍ·ÎÄ¼þ
+ * FREERTOSåº“å¤´æ–‡ä»¶
  *****************************************/
 #include "FreeRTOS.h"
 #include "task.h"
@@ -28,7 +28,7 @@
 #include "semphr.h"
 
 /*****************************************
- * Stringº¯ÊýÍ·ÎÄ¼þ
+ * Stringå‡½æ•°å¤´æ–‡ä»¶
  *****************************************/
 #include "stdio.h"
 #include "string.h"
@@ -36,21 +36,21 @@
 #include "stdlib.h"
 
 /*****************************************
- * System Í·ÎÄ¼þ
+ * System å¤´æ–‡ä»¶
  *****************************************/
 #include "common.h"
 #include "delay.h"
 
-/***********************************     °æ±¾ÉèÖÃ    **************************************/
+/***********************************     ç‰ˆæœ¬è®¾ç½®    **************************************/
 #define  STM32_VERSION "Nercita 2020/09/07 @ v1.0"
 
-/***********************************    ¿ØÖÆÉè±¸ºê   **************************************/
-#define DEBUG_LOG_PRINTF 1  //¿ªÆô(1)/¹Ø±Õ(0) ´®¿Úlog´òÓ¡ 
+/***********************************    æŽ§åˆ¶è®¾å¤‡å®   **************************************/
+#define DEBUG_LOG_PRINTF 1  //å¼€å¯(1)/å…³é—­(0) ä¸²å£logæ‰“å° 
 
 
 
 
-/*********************************** ¿ªÆô DEBUG ÉèÖÃ **************************************/
+/*********************************** å¼€å¯ DEBUG è®¾ç½® **************************************/
 #ifdef DEBUG_LOG_PRINTF
 #define DEBUG_LOG_PRF(fmt, args...)   \
         do{ \
@@ -58,29 +58,29 @@
         }while(0)
 #endif
 
-/*********************************** ÈÎÎñÏà¹Øºê£¨ÓÅÏÈ¼¶£© **************************************/
-//¸ù¾ÝFreeRTOSConfig.hµÄºêconfigLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY ÅäÖÃµÄÖµÈ·¶¨FreeRTOSÄÜ¹ÜÀíµÄ×î¸ßÓÅÏÈ¼¶
-//NVICÖÐ¶ÏÓÅÏÈ¼¶µÄÊýÖµÔ½Ð¡£¬ÓÅÏÈ¼¶Ô½¸ß¡£ ¶ø FreeRTOS µÄÈÎÎñÓÅÏÈ¼¶ÊÇ£¬ÈÎÎñÓÅÏÈ¼¶ÊýÖµÔ½Ð¡£¬ÈÎÎñÓÅÏÈ¼¶Ô½µÍ¡£
-//´´½¨¿ªÊ¼ÈÎÎñ
-#define START_TASK_PRIO		     1          //ÈÎÎñÓÅÏÈ¼¶
-#define START_STK_SIZE 		     256        //ÈÎÎñ¶ÑÕ»´óÐ¡
-extern  TaskHandle_t StartTask_Handler;		//ÈÎÎñ¾ä±ú
+/*********************************** ä»»åŠ¡ç›¸å…³å®ï¼ˆä¼˜å…ˆçº§ï¼‰ **************************************/
+//æ ¹æ®FreeRTOSConfig.hçš„å®configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY é…ç½®çš„å€¼ç¡®å®šFreeRTOSèƒ½ç®¡ç†çš„æœ€é«˜ä¼˜å…ˆçº§
+//NVICä¸­æ–­ä¼˜å…ˆçº§çš„æ•°å€¼è¶Šå°ï¼Œä¼˜å…ˆçº§è¶Šé«˜ã€‚ è€Œ FreeRTOS çš„ä»»åŠ¡ä¼˜å…ˆçº§æ˜¯ï¼Œä»»åŠ¡ä¼˜å…ˆçº§æ•°å€¼è¶Šå°ï¼Œä»»åŠ¡ä¼˜å…ˆçº§è¶Šä½Žã€‚
+//åˆ›å»ºå¼€å§‹ä»»åŠ¡
+#define START_TASK_PRIO		     1          //ä»»åŠ¡ä¼˜å…ˆçº§
+#define START_STK_SIZE 		     256        //ä»»åŠ¡å †æ ˆå¤§å°
+extern  TaskHandle_t StartTask_Handler;		//ä»»åŠ¡å¥æŸ„
 
 
-//´´½¨ÈÎÎñ1  ÔËÐÐ×´Ì¬Ö¸Ê¾µÆÈÎÎñ
-#define Runing_State_PRIO		 5            //ÈÎÎñÓÅÏÈ¼¶
-#define Runing_State_STK_SIZE    128         //ÈÎÎñ¶ÑÕ»´óÐ¡	
-extern TaskHandle_t Runing_State_Handler;    //ÈÎÎñ¾ä±ú
-
-		
-		
-/*********************************** BSP²ãNVICÓÅÏÈ¼¶ ÉèÖÃ **************************************/
-//#define USART1_PRIO				14			//ÓÅÏÈ¼¶
+//åˆ›å»ºä»»åŠ¡1  è¿è¡ŒçŠ¶æ€æŒ‡ç¤ºç¯ä»»åŠ¡
+#define Runing_State_PRIO		 5            //ä»»åŠ¡ä¼˜å…ˆçº§
+#define Runing_State_STK_SIZE    128         //ä»»åŠ¡å †æ ˆå¤§å°	
+extern TaskHandle_t Runing_State_Handler;    //ä»»åŠ¡å¥æŸ„
 
 		
 		
-/***********************************   È«¾Öµ÷ÓÃÊý×é/±äÁ¿  **************************************/
-extern volatile uint8_t chipid[13];  //STM32L151 Î¨Ò»ID ±£´æÊý×é
+/*********************************** BSPå±‚NVICä¼˜å…ˆçº§ è®¾ç½® **************************************/
+//#define USART1_PRIO				14			//ä¼˜å…ˆçº§
+
+		
+		
+/***********************************   å…¨å±€è°ƒç”¨æ•°ç»„/å˜é‡  **************************************/
+extern volatile uint8_t chipid[13];  //STM32L151 å”¯ä¸€ID ä¿å­˜æ•°ç»„
 
 
 
