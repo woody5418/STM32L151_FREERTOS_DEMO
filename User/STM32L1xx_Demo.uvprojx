@@ -136,8 +136,8 @@
             <Capability>1</Capability>
             <DriverSelection>4099</DriverSelection>
           </Flash1>
-          <bUseTDR>1</bUseTDR>
-          <Flash2>BIN\UL2CM3.DLL</Flash2>
+          <bUseTDR>0</bUseTDR>
+          <Flash2>BIN\CMSIS_AGDI.dll</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
@@ -669,14 +669,33 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>::Data Exchange</GroupName>
+        </Group>
       </Groups>
     </Target>
   </Targets>
 
   <RTE>
     <apis/>
-    <components/>
-    <files/>
+    <components>
+      <component Cclass="Data Exchange" Cgroup="JSON" Csub="Jansson" Cvendor="Keil" Cversion="2.7.0" condition="ARMCC">
+        <package license="doc\license.txt" name="Jansson" schemaVersion="1.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.0"/>
+        <targetInfos>
+          <targetInfo name="STM32L1XX_Demo"/>
+        </targetInfos>
+      </component>
+    </components>
+    <files>
+      <file attr="config" category="source" name="src\jansson_config.c" version="2.7.0">
+        <instance index="0">RTE\Data_Exchange\jansson_config.c</instance>
+        <component Cclass="Data Exchange" Cgroup="JSON" Csub="Jansson" Cvendor="Keil" Cversion="2.7.0" condition="ARMCC"/>
+        <package license="doc\license.txt" name="Jansson" schemaVersion="1.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.0"/>
+        <targetInfos>
+          <targetInfo name="STM32L1XX_Demo"/>
+        </targetInfos>
+      </file>
+    </files>
   </RTE>
 
 </Project>

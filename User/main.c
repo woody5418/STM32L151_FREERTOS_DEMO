@@ -79,7 +79,7 @@ int main(void)
 #endif
     bsp_Init();				//所有硬件固件初始化
 #if DEBUG_LOG_PRINTF
-    DEBUG_LOG_PRF(STM32_VERSION);
+    LOG_D(STM32_VERSION);
 #endif	
 	
     /* 创建任务 */

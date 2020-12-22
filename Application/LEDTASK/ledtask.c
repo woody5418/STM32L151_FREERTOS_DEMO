@@ -19,7 +19,7 @@
 #include "ledtask.h"
 #include "led.h"
 
-static uint8_t runtimes=0;
+
 
 TaskHandle_t Runing_State_Handler;     //任务句柄
 
@@ -36,15 +36,12 @@ void  Runing_State(void *pvParameters)
 {
     while(1) {
         Reversal_LED();
-		DEBUG_LOG_PRF("Runing_State: %d",runtimes++);
-		if(runtimes == 0XFF) 
-			runtimes=0;
         vTaskDelay(100);   //延时1s
 #if DEBUG_LOG_PRINTF  
 		/* 检测任务堆栈使用大小的一种方式，通过设置FreeRTOS的宏INCLUDE_uxTaskGetStackHighWaterMark开启
 		 * uxTaskGetStackHighWaterMark()主要用来查询指定任务的运行历史中， 其栈空间还差多少就要溢出。
 		 * 这个值被称为栈空间的“高水线(High Water Mark)”。需要先设置大堆栈，然后合理化设置实际堆栈。*/
-		DEBUG_LOG_PRF("Reference task stack size = %d", 
+		LOG_D("Reference task stack size = %d", 
 			((int )Runing_State_STK_SIZE-(int)uxTaskGetStackHighWaterMark(NULL))*2);
 #endif
 	}

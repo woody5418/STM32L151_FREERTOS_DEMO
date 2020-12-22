@@ -49,7 +49,7 @@ void get_chip_id(void)
 {
     GET_STM32_ID((uint8_t *)chipid);					//获取唯一ID
 #if DEBUG_LOG_PRINTF
-    DEBUG_LOG_PRF("CHIPID:");  							//串口打印CHIPID
+    LOG_D("CHIPID:");  							//串口打印CHIPID
     for(uint8_t i = 0; i < 12; i++) printf("%02x", chipid[i]);
     printf("\r\n");
 #endif

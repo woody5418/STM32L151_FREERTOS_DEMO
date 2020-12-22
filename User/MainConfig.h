@@ -46,18 +46,36 @@
 
 /***********************************    控制设备宏   **************************************/
 #define DEBUG_LOG_PRINTF 1  //开启(1)/关闭(0) 串口log打印 
-
-
-
-
+#if DEBUG_LOG_PRINTF
+#define LOG_LEVEL		     LOG_LEVEL_VERBOSE
+#else
+#define LOG_LEVEL		     LOG_LEVEL_OFF
+#endif
 /*********************************** 开启 DEBUG 设置 **************************************/
-#ifdef DEBUG_LOG_PRINTF
-#define DEBUG_LOG_PRF(fmt, args...)   \
-        do{ \
-			printf("DEBUG:(%s-%d)" fmt "\r\n", __func__, __LINE__, ##args); \
-        }while(0)
+#if (LOG_LEVEL	>= LOG_LEVEL_ERROR)
+	#define	LOG_E(format,...)	\
+			taskENTER_CRITICAL();printf("E:"format,##__VA_ARGS__);taskEXIT_CRITICAL();
 #endif
 
+#if (LOG_LEVEL	>= LOG_LEVEL_WARING)
+	#define	LOG_W(format,...)	\
+			taskENTER_CRITICAL();printf("W:"format,##__VA_ARGS__);taskEXIT_CRITICAL();
+#endif
+
+#if (LOG_LEVEL	>= LOG_LEVEL_INFO)
+	#define	LOG_I(format,...)	\
+			taskENTER_CRITICAL();printf("I:"format,##__VA_ARGS__);taskEXIT_CRITICAL();
+#endif
+
+#if (LOG_LEVEL	>= LOG_LEVEL_DEBUG)
+	#define LOG_D(format, ...)   \
+			taskENTER_CRITICAL();printf("DEBUG:(%s-%d)" format "\r\n", __func__, __LINE__, ##__VA_ARGS__);taskEXIT_CRITICAL(); 
+#endif
+
+#if LOG_LEVEL	>= LOG_LEVEL_VERBOSE
+	#define	LOG_V(format,...)	\
+			taskENTER_CRITICAL();printf("V:"format,##__VA_ARGS__);taskEXIT_CRITICAL();
+#endif
 /*********************************** 任务相关宏（优先级） **************************************/
 //根据FreeRTOSConfig.h的宏configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY 配置的值确定FreeRTOS能管理的最高优先级
 //NVIC中断优先级的数值越小，优先级越高。 而 FreeRTOS 的任务优先级是，任务优先级数值越小，任务优先级越低。
